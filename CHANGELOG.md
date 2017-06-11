@@ -1,6 +1,11 @@
-### 1.2.7-SNAPSHOT
+### 1.2.8
+- `app:loopCount` XML attribute added to `GifImageView`, `GifImageButton`, `GifTextView` and `GifTextureView` - [#176](https://github.com/koral--/android-gif-drawable/issues/176)
+- Added `mipmap` resources support in XML attributes of `GifTextView`
+
+### 1.2.7
 - `GifDrawable` subclassing simplified - [#399](https://github.com/koral--/android-gif-drawable/pull/399)
 - Malformed input support improved - [#394](https://github.com/koral--/android-gif-drawable/issues/394)
+- `GifTextureView` animation freezing fixed - [#392](https://github.com/koral--/android-gif-drawable/issues/392)
 - Android Support library updated to 25.3.1
 - Android gradle plugin updated to 2.3.1
 - Gradle wrapper regenerated with 3.5
