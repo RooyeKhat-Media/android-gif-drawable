@@ -38,6 +38,9 @@ static jint bufferUpTo(JNIEnv *env, StreamContainer *sc, size_t size) {
 			totalLength += length;
 		} else {
 			if ((*env)->ExceptionCheck(env)) {
+#ifdef DEBUG
+				(*env)->ExceptionDescribe(env);
+#endif
 				(*env)->ExceptionClear(env);
 			}
 			break;
@@ -106,6 +109,9 @@ int streamRewind(GifInfo *info) {
 	}
 	(*env)->CallVoidMethod(env, sc->stream, sc->resetMethodID);
 	if ((*env)->ExceptionCheck(env)) {
+#ifdef DEBUG
+		(*env)->ExceptionDescribe(env);
+#endif
 		(*env)->ExceptionClear(env);
 		info->gifFilePtr->Error = D_GIF_ERR_REWIND_FAILED;
 		return -1;
@@ -203,6 +209,7 @@ Java_pl_droidsonroids_gif_GifInfoHandle_openDirectByteBuffer(JNIEnv *env, jclass
 		throwException(env, OUT_OF_MEMORY_ERROR, OOME_MESSAGE);
 		return NULL_GIF_INFO;
 	}
+	container->bufferRef = (*env)->NewGlobalRef(env, buffer);
 	container->bytes = bytes;
 	container->capacity = capacity;
 	container->position = 0;
@@ -272,7 +279,7 @@ Java_pl_droidsonroids_gif_GifInfoHandle_openStream(JNIEnv *env, jclass __unused 
 	container->markCalled = false;
 	descriptor.GifFileIn = DGifOpen(container, &streamRead, &descriptor.Error);
 
-	(*env)->CallVoidMethod(env, stream, markMethodID, LONG_MAX);
+	(*env)->CallVoidMethod(env, stream, markMethodID, INT32_MAX);
 
 	if (!(*env)->ExceptionCheck(env)) {
 		GifInfo *info = createGifInfo(&descriptor, env);
@@ -280,6 +287,9 @@ Java_pl_droidsonroids_gif_GifInfoHandle_openStream(JNIEnv *env, jclass __unused 
 		container->bufferPosition = 0;
 		return (jlong) (intptr_t) info;
 	} else {
+#ifdef DEBUG
+		(*env)->ExceptionDescribe(env);
+#endif
 		(*env)->DeleteGlobalRef(env, container->stream);
 		(*env)->DeleteGlobalRef(env, container->buffer);
 		free(container);
@@ -314,7 +324,7 @@ Java_pl_droidsonroids_gif_GifInfoHandle_openFd(JNIEnv *env, jclass __unused hand
 			return NULL_GIF_INFO;
 		}
 		struct stat st;
-		const long sourceLength = fstat(fd, &st) == 0 ? st.st_size : -1;
+		const long long sourceLength = fstat(fd, &st) == 0 ? st.st_size : -1;
 
 		GifInfo *const info = createGifInfoFromFile(env, file, sourceLength);
 		if (info == NULL) {
@@ -328,7 +338,7 @@ Java_pl_droidsonroids_gif_GifInfoHandle_openFd(JNIEnv *env, jclass __unused hand
 	}
 }
 
-static GifInfo *createGifInfoFromFile(JNIEnv *env, FILE *file, const long sourceLength) {
+static GifInfo *createGifInfoFromFile(JNIEnv *env, FILE *file, const long long sourceLength) {
 	GifSourceDescriptor descriptor = {
 			.rewindFunc = fileRewind,
 			.sourceLength = sourceLength
