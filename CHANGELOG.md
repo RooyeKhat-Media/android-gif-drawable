@@ -1,5 +1,25 @@
-### 1.2.9-SNAPSHOT
-Nothing yet
+### 1.2.12
+- `GifDrawable` invalidation fixed - [#510](https://github.com/koral--/android-gif-drawable/issue/510)
+- SIGILL on arm CPUs without NEON fixed - [#522](https://github.com/koral--/android-gif-drawable/issue/522)
+
+### 1.2.11
+- Gradle wrapper regenerated with 4.5.1
+- Kotlin updated to 1.2.21
+- Added `GifTexImage2D#getCurrentFrameIndex()` - [#506](https://github.com/koral--/android-gif-drawable/pull/506)
+
+### 1.2.10
+- Gradle wrapper regenerated with 4.4.1
+- `armeabi` and `mips` family targets restored - [#494](https://github.com/koral--/android-gif-drawable/pull/494)
+
+### 1.2.9
+- Android Support library updated to 27.0.2
+- Android gradle plugin updated to 3.0.1
+- Kotlin updated to 1.2.10
+- Gradle wrapper regenerated with 4.4
+- Build tools updated to 27.0.2
+- Minimum SDK version increased to 14
+- Improved bound passing to transforms - [#450](https://github.com/koral--/android-gif-drawable/pull/450)
+- Add compound drawables animation start when `GifTextView` attached to window - [#474](https://github.com/koral--/android-gif-drawable/pull/474)
 
 ### 1.2.8
 - `app:loopCount` XML attribute added to `GifImageView`, `GifImageButton`, `GifTextView` and `GifTextureView` - [#176](https://github.com/koral--/android-gif-drawable/issues/176)
