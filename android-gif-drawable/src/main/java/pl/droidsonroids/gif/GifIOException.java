@@ -1,6 +1,6 @@
 package pl.droidsonroids.gif;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class GifIOException extends IOException {
 		return reason.getFormattedDescription() + ": " + mErrnoMessage;
 	}
 
-	private GifIOException(int errorCode, String errnoMessage) {
+	GifIOException(int errorCode, String errnoMessage) {
 		reason = GifError.fromCode(errorCode);
 		mErrnoMessage = errnoMessage;
 	}

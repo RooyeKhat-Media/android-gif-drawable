@@ -4,12 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
 
     defaultConfig {
         versionName project.version
@@ -44,11 +38,14 @@ android {
 }
 
 dependencies {
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    implementation "com.android.support:design:$versions.androidSupport"
-    implementation "com.android.support:appcompat-v7:$versions.androidSupport"
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	compileOnly "org.jetbrains:annotations:$versions.intellijAnnotations"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$versions.leakCanary"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakCanary"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.appcompat:appcompat:$versions.androidX"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
     implementation project(':android-gif-drawable')
 	//implementation 'pl.droidsonroids.gif:android-gif-drawable:+'
 }

@@ -1,6 +1,38 @@
+### 1.2.16
+- Fixed setting color drawable from Java code - [#606](https://github.com/koral--/android-gif-drawable/issue/606)
+- Fixed extraneous file descriptor closing - [#600](https://github.com/koral--/android-gif-drawable/issue/600)
+- Fixed missing null check for NewGlobalRef - [#594](https://github.com/koral--/android-gif-drawable/issue/594)
+- Fixed missing free of info buffer - [#595](https://github.com/koral--/android-gif-drawable/issue/595)
+- Android Gradle plugin updated to 3.2.1
+- Gradle wrapper regenerated with 4.10.2
+- NDK updated to r18, minimum API level increased to 17
+
+### 1.2.15
+- Fix VerifyError on API level older than Lollipop - [#570](https://github.com/koral--/android-gif-drawable/issue/570)
+- Gradle wrapper regenerated with 4.9
+
+### 1.2.14
+- Fix release packaging
+
+### 1.2.13
+- Kotlin updated to 1.2.51
+- Compile and target SDK version updated to 28
+- Android Support library updated to 27.1.1
+- Android Gradle plugin updated to 3.1.3
+- Gradle wrapper regenerated with 4.8.1
+- Removed private FileDescriptor field usage on Android P and above
+- Added explicit FileDescriptor closing
+- Removed unused code in LibraryLoader
+- Dropped MIPS and MIPS64 targets
+- Added support for NDK r17 and newer (with optional armeabi target built using NDK < r17)
+- Fixed possible race conditions in GifTexImage2D 
+
 ### 1.2.12
 - `GifDrawable` invalidation fixed - [#510](https://github.com/koral--/android-gif-drawable/issue/510)
 - SIGILL on arm CPUs without NEON fixed - [#522](https://github.com/koral--/android-gif-drawable/issue/522)
+- Gradle wrapper regenerated with 4.6
+- Kotlin updated to 1.2.30
+- Android Support library updated to 27.1.0
 
 ### 1.2.11
 - Gradle wrapper regenerated with 4.5.1

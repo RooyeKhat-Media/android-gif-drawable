@@ -1,15 +1,12 @@
 package pl.droidsonroids.gif;
 
-import android.support.annotation.IntRange;
-import android.support.annotation.Nullable;
-
-import pl.droidsonroids.gif.annotations.Beta;
+import androidx.annotation.IntRange;
+import androidx.annotation.Nullable;
 
 /**
  * Options controlling various GIF parameters similar to
  * {@link android.graphics.BitmapFactory.Options}
  */
-@Beta
 public class GifOptions {
 
 	char inSampleSize;
